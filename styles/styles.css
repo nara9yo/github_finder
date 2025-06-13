@@ -1,0 +1,270 @@
+/* ------------------------- */
+/* 1. 기본 & 전역 스타일        */
+/* ------------------------- */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --info-color: #0dcaf0;
+  --danger-color: #dc3545;
+  --light-gray: #f8f9fa;
+  --dark-color: #212529;
+  --border-color: #dee2e6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #fff;
+  color: #333;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ------------------------- */
+/* 2. 컴포넌트 스타일           */
+/* ------------------------- */
+
+/* 내비게이션 바 */
+.navbar {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.navbar a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navbar a:hover {
+  text-decoration: none;
+}
+
+/* 카드 */
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+.card h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.card .lead {
+  font-size: 1.25rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* 입력창 */
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+/* 버튼 */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  text-decoration: none;
+}
+
+/* 뱃지 */
+.badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.badge-primary {
+  background-color: var(--primary-color);
+}
+.badge-secondary {
+  background-color: var(--secondary-color);
+}
+.badge-success {
+  background-color: var(--success-color);
+}
+.badge-info {
+  background-color: var(--info-color);
+}
+
+/* 리스트 그룹 */
+.list-group {
+  list-style: none;
+  padding-left: 0;
+}
+.list-group-item {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.25rem;
+  margin-top: -1px; /* 테두리 겹침 방지 */
+}
+.list-group-item:first-child {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.list-group-item:last-child {
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+/* 알림창 */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+}
+
+/* 저장소 통계(뱃지) 오른쪽 정렬 */
+.repo-stats {
+  text-align: right;
+}
+
+/* ------------------------- */
+/* 3. 레이아웃 & 그리드 시스템    */
+/* ------------------------- */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+/* 12컬럼 그리드 시스템 (3/9, 6/6 분할) */
+.col-3,
+.col-9,
+.col-6 {
+  width: 100%; /* 모바일에서는 기본적으로 한 줄에 하나씩 */
+  padding: 0 10px;
+}
+
+/* 데스크탑 (768px 이상) */
+@media (min-width: 768px) {
+  .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* ------------------------- */
+/* 4. 유틸리티               */
+/* ------------------------- */
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.page-heading {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+.text-center {
+  text-align: center;
+}
+
+/* 잔디밭(Contribution Graph) 이미지를 컨테이너에 꽉 채우기 */
+#contribution .card img {
+  width: 100%;
+}
+
+/* 스피너 */
+.spinner-border {
+  display: none;
+  width: 3rem;
+  height: 3rem;
+  margin: auto;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+  color: var(--primary-color);
+}
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 푸터 */
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+  background-color: var(--light-gray);
+  color: #6c757d;
+}
