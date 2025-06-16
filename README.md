@@ -13,33 +13,35 @@
 
 ```
 .
-├── index.html                # 메인 HTML 파일, 앱의 구조와 스크립트 로딩
-├── README.md                 # 프로젝트 설명 파일
-├── .gitignore                # Git 관리 제외 파일 설정
-├── assets/
-│   └── favicon.ico           # 파비콘 이미지
+├── index.html                        # 메인 HTML 파일
+├── README.md                         # 프로젝트 설명 파일
+├── .gitignore                        # Git 관리 제외 파일 설정
+├── api/
+│   └── github.js                     # GitHub API 통신 담당
+├── components/
+│   └── ui.js                         # UI 렌더링, DOM 조작, 알림/스피너/프로필/저장소/잔디밭 표시
 ├── common/
-│   ├── app.js                # 앱 초기화, 이벤트 바인딩, 전체 로직 제어
-│   ├── github.js             # GitHub API 통신 및 데이터 fetch 클래스
-│   └── ui.js                 # UI 렌더링, DOM 조작, 알림/스피너/프로필/저장소/잔디밭 표시
+│   └── app.js                        # 앱 초기화, 이벤트 바인딩, 전체 로직 제어
+├── assets/
+│   └── favicon.ico                   # 파비콘 이미지
 ├── styles/
-│   └── styles.css            # 전체 스타일(CSS)
+│   └── styles.css                    # 전체 스타일(CSS)
 ```
 
 ### 주요 파일 및 폴더 설명
 
 - **index.html**  
-  앱의 메인 구조와 입력창, 결과 표시 영역, 스크립트 및 스타일 로딩을 담당합니다.
+  앱의 메인 구조, 입력창, 결과 표시 영역, 스크립트 및 스타일 로딩을 담당합니다.
+
+- **api/github.js**  
+  GitHub REST API와 통신하여 사용자 정보, 저장소 정보를 비동기로 가져옵니다.
+
+- **components/ui.js**  
+  사용자 프로필, 저장소 목록, 잔디밭(컨트리뷰션 그래프), 스피너, 알림 메시지 등 UI 요소를 동적으로 생성 및 표시합니다.
 
 - **common/app.js**  
   앱의 진입점.  
-  검색창 이벤트를 감지하여 [`GitHub`](common/github.js)와 [`UI`](common/ui.js) 인스턴스를 통해 사용자 입력에 따라 프로필, 저장소, 잔디밭(컨트리뷰션 그래프) 등을 표시합니다.
-
-- **common/github.js**  
-  GitHub REST API를 통해 사용자 정보와 저장소 정보를 비동기로 가져오는 역할을 합니다.
-
-- **common/ui.js**  
-  사용자 프로필, 저장소 목록, 잔디밭(컨트리뷰션 그래프), 스피너, 알림 메시지 등 UI 요소를 동적으로 생성 및 표시합니다.
+  이벤트 바인딩 및 전체 로직 제어, 각 컴포넌트와 API를 연결합니다.
 
 - **styles/styles.css**  
   전체 레이아웃, 카드, 버튼, 뱃지, 스피너, 반응형 그리드 등 앱의 스타일을 담당합니다.
