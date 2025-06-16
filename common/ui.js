@@ -208,14 +208,11 @@ class UI {
   showContributionGraph(username) {
     this.contribution.innerHTML = "";
 
-    /*
-    this.contribution.innerHTML = `
-      <h3 class="page-heading">Contribution Graph</h3>
-      <div class="card mb-3">
-        <img src="https://ghchart.rshah.org/${username}" alt="Contribution Graph">
-      </div>
-    `;
-    */
+    // heading 요소 생성 추가
+    const heading = document.createElement("h3");
+    heading.className = "page-heading";
+    heading.textContent = "Contribution Graph";
+
     // 카드
     const card = document.createElement("div");
     card.className = "card mb-3";
