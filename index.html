@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+    <!-- ====== [HEAD: 메타, 스타일, 파비콘] ====== -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,34 +10,44 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <nav class="navbar">
+    <!-- ====== [NAVIGATION BAR] ====== -->
+    <header class="navbar">
       <div class="container">
-        <a href="#" class="navbar-brand">GitHub Finder</a>
+        <a href="#" class="navbar__brand">GitHub Finder</a>
       </div>
-    </nav>
-    <div class="container">
-      <div class="card">
-        <h1>Search GitHub Users</h1>
-        <p class="lead">Enter a username to fetch a user profile and repos</p>
-        <input type="text" id="searchUser" placeholder="Enter a username" />
-      </div>
-
-      <div id="profile"></div>
-
-      <div class="text-center">
-        <div class="spinner-border" role="status"></div>
-      </div>
-
-      <div id="contribution"></div>
-
-      <h3 class="page-heading">Latest Repos</h3>
-      <div id="repos"></div>
-    </div>
-
-    <footer class="mt-5 p-3 text-center bg-light">GitHub Finder &copy;</footer>
-
-    <script src="api/github.js"></script>
-    <script src="components/ui.js"></script>
-    <script src="common/app.js"></script>
+    </header>
+    <main>
+      <section class="container">
+        <!-- ====== [SEARCH CARD] ====== -->
+        <div class="card card--search">
+          <h1 class="card__title">Search GitHub Users</h1>
+          <p class="card__lead">
+            Enter a username to fetch a user profile and repos
+          </p>
+          <input
+            type="text"
+            id="searchUser"
+            class="search__input"
+            placeholder="Enter a username"
+            autocomplete="on"
+          />
+        </div>
+        <!-- ====== [PROFILE] ====== -->
+        <section id="profile" class="profile"></section>
+        <!-- ====== [SPINNER] ====== -->
+        <div class="center">
+          <div class="spinner"></div>
+        </div>
+        <!-- ====== [CONTRIBUTION GRAPH] ====== -->
+        <section id="contribution" class="contribution"></section>
+        <!-- ====== [REPOSITORIES] ====== -->
+        <h3 class="repos__heading">Latest Repos</h3>
+        <section id="repos" class="repos"></section>
+      </section>
+    </main>
+    <!-- ====== [FOOTER] ====== -->
+    <footer class="footer">GitHub Finder &copy;</footer>
+    <!-- ====== [APP SCRIPT] ====== -->
+    <script type="module" src="app.js"></script>
   </body>
 </html>

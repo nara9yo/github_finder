@@ -1,67 +1,37 @@
-class GitHub {
+// ===============================
+// [GitHub API 통신 클래스]
+// - 사용자 정보 및 저장소 정보 비동기 fetch
+// ===============================
+export class GitHub {
   constructor() {
-    // GitHub API 토큰 (scope: public_repo)
-    //this.token = "";
-    // 실제 토큰을 넣으면 github에 push가 불가능 (민감정보 commit 방지)
+    // [API 인증 및 기본 옵션]
+    this.client_id = "YOUR_CLIENT_ID"; // GitHub API Client ID
+    this.client_secret = "YOUR_CLIENT_SECRET"; // GitHub API Client Secret
+    this.repos_count = 5; // 가져올 저장소 개수
+    this.repos_sort = "created: asc"; // 저장소 정렬 기준
   }
 
-  // 사용자 정보와 저장소 정보를 한 번에 가져오는 메소드
+  // [유저 정보 및 저장소 정보 동시 요청]
   async getUser(user) {
-    const headers = {};
-    // 토큰이 있으면 Authorization 헤더 추가
-    if (this.token) {
-      headers["Authorization"] = `token ${this.token}`;
-    }
-
     try {
-      // 사용자 정보 요청
-      const profileResponse = await fetch(
-        `https://api.github.com/users/${user}`,
-        { headers }
-      );
-
-      // 404면 바로 반환 (저장소 요청 X)
-      if (profileResponse.status === 404) {
-        return {
-          profile: null,
-          repos: [],
-        };
-      }
-
-      // 기타 에러 처리
-      if (!profileResponse.ok) {
-        return {
-          profile: null,
-          repos: [],
-        };
-      }
-
-      // 사용자 정보 JSON 파싱
-      const profile = await profileResponse.json();
-
-      // 저장소 정보 요청 (최신 5개)
-      const repoResponse = await fetch(
-        `https://api.github.com/users/${user}/repos?per_page=5&sort=created:asc`,
-        { headers }
-      );
-
-      // 저장소 요청도 실패할 수 있으니 예외처리
-      let repos = [];
-      if (repoResponse.ok) {
-        repos = await repoResponse.json();
-      }
-
-      // 사용자 정보와 저장소 정보 반환
-      return {
-        profile,
-        repos,
-      };
-    } catch (error) {
-      // 네트워크 등 예외 발생 시
-      return {
-        profile: null,
-        repos: [],
-      };
+      // 프로필과 저장소 정보를 동시에 요청
+      const [profileRes, reposRes] = await Promise.all([
+        fetch(
+          `https://api.github.com/users/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`
+        ),
+        fetch(
+          `https://api.github.com/users/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}&client_id=${this.client_id}&client_secret=${this.client_secret}`
+        ),
+      ]);
+      // 사용자 정보가 없으면 빈 객체 반환
+      if (!profileRes.ok) return {};
+      const profile = await profileRes.json();
+      const repos = await reposRes.json();
+      return { profile, repos };
+    } catch (err) {
+      // 네트워크 또는 기타 에러 발생 시 콘솔에 로그
+      console.error("GitHub API fetch error:", err);
+      return {};
     }
   }
 }

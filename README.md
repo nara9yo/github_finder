@@ -9,45 +9,41 @@
 
 ---
 
-## 프로젝트 구조 및 파일 설명
+## 프로젝트 폴더 구조
 
 ```
-.
-├── index.html                        # 메인 HTML 파일
-├── README.md                         # 프로젝트 설명 파일
-├── .gitignore                        # Git 관리 제외 파일 설정
+github_finder/
+├── index.html                  # 메인 HTML 파일
+├── README.md                   # 프로젝트 설명 파일
+├── .gitignore                  # Git 관리 제외 파일 설정
 ├── api/
-│   └── github.js                     # GitHub API 통신 담당
+│   └── github.js               # GitHub API 통신 담당
 ├── components/
-│   └── ui.js                         # UI 렌더링, DOM 조작, 알림/스피너/프로필/저장소/잔디밭 표시
-├── common/
-│   └── app.js                        # 앱 초기화, 이벤트 바인딩, 전체 로직 제어
+│   └── ui.js                   # UI 렌더링, DOM 조작, 알림/스피너/프로필/저장소/잔디밭 표시
+├── app.js                      # 앱 초기화, 이벤트 바인딩, 전체 로직 제어
 ├── assets/
-│   └── favicon.ico                   # 파비콘 이미지
+│   └── favicon.ico             # 파비콘 이미지
 ├── styles/
-│   └── styles.css                    # 전체 스타일(CSS)
+│   └── styles.css              # 전체 스타일(CSS)
 ```
 
-### 주요 파일 및 폴더 설명
+- **api/**  
+  외부 API 통신(데이터 fetch 등) 관련 파일을 둡니다.
+
+- **components/**  
+  UI 렌더링, DOM 조작 등 화면 관련 모듈을 둡니다.
+
+- **styles/**  
+  CSS 등 스타일 파일을 관리합니다.
+
+- **assets/**  
+  이미지, 파비콘 등 정적 파일을 둡니다.
+
+- **app.js**  
+  앱의 진입점. 전체 로직 제어 및 이벤트 바인딩을 담당합니다.
 
 - **index.html**  
-  앱의 메인 구조, 입력창, 결과 표시 영역, 스크립트 및 스타일 로딩을 담당합니다.
-
-- **api/github.js**  
-  GitHub REST API와 통신하여 사용자 정보, 저장소 정보를 비동기로 가져옵니다.
-
-- **components/ui.js**  
-  사용자 프로필, 저장소 목록, 잔디밭(컨트리뷰션 그래프), 스피너, 알림 메시지 등 UI 요소를 동적으로 생성 및 표시합니다.
-
-- **common/app.js**  
-  앱의 진입점.  
-  이벤트 바인딩 및 전체 로직 제어, 각 컴포넌트와 API를 연결합니다.
-
-- **styles/styles.css**  
-  전체 레이아웃, 카드, 버튼, 뱃지, 스피너, 반응형 그리드 등 앱의 스타일을 담당합니다.
-
-- **assets/favicon.ico**  
-  브라우저 탭에 표시되는 파비콘 이미지입니다.
+  앱의 메인 구조와 스크립트/스타일 로딩을 담당합니다.
 
 ---
 

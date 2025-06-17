@@ -1,52 +1,30 @@
-class UI {
+// ===============================
+// [UI 클래스]
+// - 프로필, 저장소, 잔디밭, 스피너, 알림 등 UI 렌더링 담당
+// ===============================
+export class UI {
   constructor() {
-    // DOM 요소 캐싱
+    // [DOM 요소 캐싱]
     this.profile = document.getElementById("profile");
     this.repos = document.getElementById("repos");
     this.contribution = document.getElementById("contribution");
-    this.spinner = document.querySelector(".spinner-border");
+    this.spinner = document.querySelector(".spinner");
   }
 
-  // 프로필 표시 메소드
+  // ===============================
+  // [프로필 표시]
+  // ===============================
   showProfile(user) {
-    // 기존 내용 초기화
     this.profile.innerHTML = "";
 
-    // innerHTML 방식이 가독성에는 더 나은듯...
-    /*
-    this.profile.innerHTML = `
-      <div class="card mb-3">
-        <div class="row">
-          <div class="col-3">
-            <img src="${user.avatar_url}" class="mb-2">
-            <a href="${user.html_url}" target="_blank" class="btn btn-primary w-100 mb-2">View Profile</a>
-          </div>
-          <div class="col-9">
-            <span class="badge badge-primary">Public Repos: ${user.public_repos}</span>
-            <span class="badge badge-secondary">Public Gists: ${user.public_gists}</span>
-            <span class="badge badge-success">Followers: ${user.followers}</span>
-            <span class="badge badge-info">Following: ${user.following}</span>
-            <br><br>
-            <ul class="list-group">
-              <li class="list-group-item">Company: ${user.company || "N/A"}</li>
-              <li class="list-group-item">Website/Blog: <a href="${user.blog}" target="_blank">${user.blog || "N/A"}</a></li>
-              <li class="list-group-item">Location: ${user.location || "N/A"}</li>
-              <li class="list-group-item">Member Since: ${new Date(user.created_at).toLocaleString()}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    `;
-    */
-
-    // 카드 생성
+    // --- 카드 생성 ---
     const card = document.createElement("div");
     card.className = "card mb-3";
 
     const row = document.createElement("div");
     row.className = "row";
 
-    // 왼쪽(이미지, 버튼)
+    // --- 왼쪽: 이미지, 버튼 ---
     const col3 = document.createElement("div");
     col3.className = "col-3";
 
@@ -63,7 +41,7 @@ class UI {
     col3.appendChild(img);
     col3.appendChild(profileBtn);
 
-    // 오른쪽(정보)
+    // --- 오른쪽: 정보, 뱃지, 리스트 ---
     const col9 = document.createElement("div");
     col9.className = "col-9";
 
@@ -136,29 +114,14 @@ class UI {
     this.profile.appendChild(card);
   }
 
-  // 저장소 표시 메소드 (DOM API 사용)
+  // ===============================
+  // [저장소 표시]
+  // ===============================
   showRepos(repos) {
     this.repos.innerHTML = "";
 
-    /*
-    this.repos.innerHTML = repos.map(repo => `
-      <div class="card mb-2">
-        <div class="row">
-          <div class="col-6">
-            <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-          </div>
-          <div class="col-6 repo-stats">
-            <span class="badge badge-primary">Stars: ${repo.stargazers_count}</span>
-            <span class="badge badge-secondary">Watchers: ${repo.watchers_count}</span>
-            <span class="badge badge-success">Forks: ${repo.forks_count}</span>
-          </div>
-        </div>
-      </div>
-    `).join('');
-    */
-
     repos.forEach((repo) => {
-      // 저장소 카드 생성
+      // --- 저장소 카드 생성 ---
       const card = document.createElement("div");
       card.className = "card mb-2";
 
@@ -204,23 +167,26 @@ class UI {
     });
   }
 
-  // 잔디밭 표시 메소드
+  // ===============================
+  // [잔디밭(컨트리뷰션 그래프) 표시]
+  // ===============================
   showContributionGraph(username) {
     this.contribution.innerHTML = "";
 
-    // heading 요소 생성 추가
+    // heading 요소 생성
     const heading = document.createElement("h3");
-    heading.className = "page-heading";
+    heading.className = "contribution__heading";
     heading.textContent = "Contribution Graph";
 
-    // 카드
+    // 카드(컨테이너)
     const card = document.createElement("div");
-    card.className = "card mb-3";
+    card.className = "contribution__card";
 
     // 잔디밭 이미지
     const img = document.createElement("img");
     img.src = `https://ghchart.rshah.org/${username}`;
     img.alt = "Contribution Graph";
+    img.className = "contribution__graph";
 
     card.appendChild(img);
 
@@ -229,24 +195,29 @@ class UI {
     this.contribution.appendChild(card);
   }
 
-  // 스피너 표시
+  // ===============================
+  // [스피너 표시/숨기기]
+  // ===============================
   showSpinner() {
-    this.spinner.style.display = "block";
+    if (this.spinner) this.spinner.style.display = "block";
   }
 
-  // 스피너 숨기기
   hideSpinner() {
-    this.spinner.style.display = "none";
+    if (this.spinner) this.spinner.style.display = "none";
   }
 
-  // 프로필, 저장소, 잔디밭 초기화
+  // ===============================
+  // [초기화 메소드]
+  // ===============================
   clearProfile() {
     this.profile.innerHTML = "";
     this.repos.innerHTML = "";
     this.contribution.innerHTML = "";
   }
 
-  // 알림 표시 메소드
+  // ===============================
+  // [알림 표시/제거]
+  // ===============================
   showAlert(message, className) {
     this.clearAlert();
     const div = document.createElement("div");
@@ -267,7 +238,6 @@ class UI {
     }, 3000);
   }
 
-  // 기존 알림 제거
   clearAlert() {
     const currentAlert = document.querySelector(".alert");
     if (currentAlert) {
