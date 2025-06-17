@@ -101,10 +101,10 @@ input[type="text"] {
   text-align: center;
   color: #fff;
 }
-.btn-primary {
+.btn--primary {
   background-color: var(--primary-color);
 }
-.btn-primary:hover {
+.btn--primary:hover {
   background-color: #0b5ed7;
   text-decoration: none;
 }
@@ -123,16 +123,16 @@ input[type="text"] {
   border-radius: 0.25rem;
   margin-right: 0.25rem;
 }
-.badge-primary {
+.badge--primary {
   background-color: var(--primary-color);
 }
-.badge-secondary {
+.badge--secondary {
   background-color: var(--secondary-color);
 }
-.badge-success {
+.badge--success {
   background-color: var(--success-color);
 }
-.badge-info {
+.badge--info {
   background-color: var(--info-color);
 }
 
@@ -162,7 +162,7 @@ input[type="text"] {
   border: 1px solid transparent;
   border-radius: 0.25rem;
 }
-.alert-danger {
+.alert--danger {
   color: #842029;
   background-color: #f8d7da;
   border-color: #f5c2c7;
@@ -171,6 +171,11 @@ input[type="text"] {
 /* --- 저장소 통계(뱃지) 오른쪽 정렬 --- */
 .repo-stats {
   text-align: right;
+}
+
+.repos__heading {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 /* --- 스피너 --- */
@@ -234,6 +239,7 @@ input[type="text"] {
   border-radius: 8px;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  margin-bottom: 1rem;
 }
 
 .contribution__graph {

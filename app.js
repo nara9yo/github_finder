@@ -36,7 +36,7 @@ import { UI } from "./components/ui.js";
           ui.showContributionGraph(userText);
         } else {
           // --- 사용자 없음 알림 ---
-          ui.showAlert("User not found", "alert alert-danger");
+          ui.showAlert("User not found", "alert alert--danger");
           ui.clearProfile();
         }
         // --- 스피너 숨기기 ---
@@ -45,7 +45,7 @@ import { UI } from "./components/ui.js";
         // --- 유효하지 않은 입력 알림 ---
         ui.showAlert(
           "Invalid username. Only letters, numbers, and hyphens are allowed.",
-          "alert alert-danger"
+          "alert alert--danger"
         );
         ui.clearProfile();
       } else {
@@ -54,7 +54,7 @@ import { UI } from "./components/ui.js";
       }
     } catch (err) {
       // --- 예기치 않은 에러 처리 ---
-      ui.showAlert("An unexpected error occurred.", "alert alert-danger");
+      ui.showAlert("An unexpected error occurred.", "alert alert--danger");
       ui.hideSpinner();
       console.error(err);
     }

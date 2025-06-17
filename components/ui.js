@@ -35,7 +35,7 @@ export class UI {
     const profileBtn = document.createElement("a");
     profileBtn.href = user.html_url;
     profileBtn.target = "_blank";
-    profileBtn.className = "btn btn-primary w-100 mb-2";
+    profileBtn.className = "btn btn--primary w-100 mb-2";
     profileBtn.textContent = "View Profile";
 
     col3.appendChild(img);
@@ -48,15 +48,15 @@ export class UI {
     // 뱃지들
     const badges = [
       {
-        class: "badge badge-primary",
+        class: "badge badge--primary",
         text: `Public Repos: ${user.public_repos}`,
       },
       {
-        class: "badge badge-secondary",
+        class: "badge badge--secondary",
         text: `Public Gists: ${user.public_gists}`,
       },
-      { class: "badge badge-success", text: `Followers: ${user.followers}` },
-      { class: "badge badge-info", text: `Following: ${user.following}` },
+      { class: "badge badge--success", text: `Followers: ${user.followers}` },
+      { class: "badge badge--info", text: `Following: ${user.following}` },
     ];
     badges.forEach((badgeInfo) => {
       const span = document.createElement("span");
@@ -120,6 +120,21 @@ export class UI {
   showRepos(repos) {
     this.repos.innerHTML = "";
 
+    // 기존 reposHeading 제거
+    let reposHeading = document.getElementById("reposHeading");
+    if (reposHeading && reposHeading.parentNode) {
+      reposHeading.parentNode.removeChild(reposHeading);
+    }
+
+    // 저장소가 있을 때만 heading을 동적으로 생성해서 repos 영역 앞에 추가
+    if (repos && repos.length > 0) {
+      reposHeading = document.createElement("h3");
+      reposHeading.id = "reposHeading";
+      reposHeading.className = "repos__heading";
+      reposHeading.textContent = "Latest Repos";
+      this.repos.parentNode.insertBefore(reposHeading, this.repos);
+    }
+
     repos.forEach((repo) => {
       // --- 저장소 카드 생성 ---
       const card = document.createElement("div");
@@ -142,11 +157,11 @@ export class UI {
       col6Right.className = "col-6 repo-stats";
 
       const badgeStars = document.createElement("span");
-      badgeStars.className = "badge badge-primary";
+      badgeStars.className = "badge badge--primary";
       badgeStars.textContent = `Stars: ${repo.stargazers_count}`;
 
       const badgeWatchers = document.createElement("span");
-      badgeWatchers.className = "badge badge-secondary";
+      badgeWatchers.className = "badge badge--secondary";
       badgeWatchers.textContent = `Watchers: ${repo.watchers_count}`;
 
       const badgeForks = document.createElement("span");
@@ -157,12 +172,10 @@ export class UI {
       col6Right.appendChild(badgeWatchers);
       col6Right.appendChild(badgeForks);
 
-      // row에 컬럼 추가
       row.appendChild(col6Left);
       row.appendChild(col6Right);
       card.appendChild(row);
 
-      // 저장소 영역에 카드 추가
       this.repos.appendChild(card);
     });
   }
@@ -213,6 +226,11 @@ export class UI {
     this.profile.innerHTML = "";
     this.repos.innerHTML = "";
     this.contribution.innerHTML = "";
+    // 동적으로 생성된 reposHeading도 제거
+    const reposHeading = document.getElementById("reposHeading");
+    if (reposHeading && reposHeading.parentNode) {
+      reposHeading.parentNode.removeChild(reposHeading);
+    }
   }
 
   // ===============================
